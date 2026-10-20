@@ -1,0 +1,11 @@
+digraph G { rankdir=TB; bgcolor="white"; nodesep=0.35; ranksep=0.42; pad=0.3; labelloc=t; fontname="Helvetica-Bold"; fontsize=16; label="The kernel trick: curved boundaries from a linear method";
+node [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=12, margin="0.16,0.09", penwidth=1.4];
+edge [fontname="Helvetica", fontsize=10.5, color="#555555", arrowsize=0.8];
+ns [label="not linearly separable\nin the original space", fillcolor="#FADBD8", color="#B03A2E"];
+fm [label="feature map  phi(x)\ne.g. add x^2 + y^2", fillcolor="#DFF3E4", color="#2E8B57"];
+sp [label="separable by a flat plane\nin the new space", fillcolor="#DFF3E4", color="#2E8B57"];
+kt [label="SVM only needs dot products,\nso use K(a, b) = phi(a) . phi(b)\nwithout ever computing phi", fillcolor="#FFE9D2", color="#D9822B"];
+rb [label="RBF kernel  exp(-gamma |a - b|^2)\ninfinite-dimensional feature space", fillcolor="#DCE9FF", color="#3B6EDC"];
+pm [label="tune C and gamma together\n(log grid + cross-validation)", fillcolor="#EBDFFB", color="#7A4FC2"];
+ns -> fm -> sp; fm -> kt [style=dashed]; kt -> rb -> pm;
+}

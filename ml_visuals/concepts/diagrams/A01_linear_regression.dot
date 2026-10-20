@@ -1,0 +1,14 @@
+digraph G { rankdir=TB; bgcolor="white"; nodesep=0.35; ranksep=0.42; pad=0.3; labelloc=t; fontname="Helvetica-Bold"; fontsize=16; label="Linear regression: model, loss, learning";
+node [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=12, margin="0.16,0.09", penwidth=1.4];
+edge [fontname="Helvetica", fontsize=10.5, color="#555555", arrowsize=0.8];
+x [label="features X", fillcolor="#DCE9FF", color="#3B6EDC"];
+w [label="weights w (and intercept)", fillcolor="#DCE9FF", color="#3B6EDC"];
+p [label="prediction  y-hat = X w", fillcolor="#DFF3E4", color="#2E8B57"];
+r [label="residuals  y-hat - y", fillcolor="#DFF3E4", color="#2E8B57"];
+l [label="loss: MSE = mean of squared residuals", fillcolor="#FFE9D2", color="#D9822B"];
+gr [label="gradient = (2/m) X^T (X w - y)", fillcolor="#FFF3C4", color="#C9A100"];
+up [label="w = w - alpha * gradient", fillcolor="#DFF3E4", color="#2E8B57"];
+ne [label="or in one step:\nw = (X^T X)^-1 X^T y", fillcolor="#EBDFFB", color="#7A4FC2"];
+rg [label="add a penalty on w -> Ridge / Lasso", fillcolor="white", color="#666666"];
+x -> p; w -> p; p -> r -> l -> gr -> up; up -> p [style=dashed, label=" repeat"]; l -> ne [style=dashed]; l -> rg [style=dashed];
+}

@@ -1,0 +1,12 @@
+digraph G { rankdir=TB; bgcolor="white"; nodesep=0.35; ranksep=0.42; pad=0.3; labelloc=t; fontname="Helvetica-Bold"; fontsize=16; label="Hierarchical (agglomerative) clustering";
+node [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=12, margin="0.16,0.09", penwidth=1.4];
+edge [fontname="Helvetica", fontsize=10.5, color="#555555", arrowsize=0.8];
+e [label="every point is its own cluster", fillcolor="#EEEEEE", color="#444444"];
+dm [label="distance matrix between clusters", fillcolor="#DFF3E4", color="#2E8B57"];
+mg [label="merge the two closest clusters", fillcolor="#DCE9FF", color="#3B6EDC"];
+lk [label="linkage decides what closest means:\nsingle / complete / average / Ward", fillcolor="#FFF3C4", color="#C9A100"];
+one [label="one cluster left?", fillcolor="#FFF3C4", color="#C9A100", shape=diamond, margin="0.04,0.04"];
+dn [label="dendrogram records every merge", fillcolor="#FFE9D2", color="#D9822B"];
+cut [label="cut the tree at a height\n=> choose the number of clusters", fillcolor="#EBDFFB", color="#7A4FC2"];
+e -> dm -> mg -> one; lk -> dm [style=dashed]; one -> dm [label=" no: update distances"]; one -> dn [label=" yes"]; dn -> cut;
+}

@@ -1,0 +1,14 @@
+digraph G { rankdir=TB; bgcolor="white"; nodesep=0.35; ranksep=0.42; pad=0.3; labelloc=t; fontname="Helvetica-Bold"; fontsize=16; label="The derivative: the slope of a function at a point";
+node [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=12, margin="0.16,0.09", penwidth=1.4];
+edge [fontname="Helvetica", fontsize=10.5, color="#555555", arrowsize=0.8];
+f [label="function f(x)", fillcolor="#DCE9FF", color="#3B6EDC"];
+h [label="nudge x by a tiny h", fillcolor="#DFF3E4", color="#2E8B57"];
+q [label="ratio  (f(x+h) - f(x)) / h", fillcolor="#DFF3E4", color="#2E8B57"];
+l [label="let h -> 0", fillcolor="#DFF3E4", color="#2E8B57"];
+d [label="f'(x) = slope at x", fillcolor="#FFE9D2", color="#D9822B"];
+p [label="f'(x) > 0\nfunction rising", fillcolor="white", color="#666666"];
+m [label="f'(x) < 0\nfunction falling", fillcolor="white", color="#666666"];
+z [label="f'(x) = 0\nflat: a minimum or maximum", fillcolor="#FADBD8", color="#B03A2E"];
+ml [label="In ML: derivative of the loss tells us\nwhich way to move each parameter", fillcolor="#EBDFFB", color="#7A4FC2"];
+f -> h -> q -> l -> d; d -> p; d -> m; d -> z; z -> ml [style=dashed];
+}

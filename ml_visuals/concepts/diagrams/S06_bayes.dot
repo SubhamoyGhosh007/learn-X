@@ -1,0 +1,11 @@
+digraph G { rankdir=TB; bgcolor="white"; nodesep=0.35; ranksep=0.42; pad=0.3; labelloc=t; fontname="Helvetica-Bold"; fontsize=16; label="Bayes' rule: update a belief with evidence";
+node [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=12, margin="0.16,0.09", penwidth=1.4];
+edge [fontname="Helvetica", fontsize=10.5, color="#555555", arrowsize=0.8];
+pr [label="prior  P(A)\nwhat you believed before", fillcolor="#DCE9FF", color="#3B6EDC"];
+li [label="likelihood  P(B | A)\nhow well the evidence fits A", fillcolor="#DCE9FF", color="#3B6EDC"];
+nu [label="multiply: P(B | A) * P(A)", fillcolor="#DFF3E4", color="#2E8B57"];
+ev [label="evidence  P(B)\ntotal chance of seeing B", fillcolor="#FFF3C4", color="#C9A100"];
+po [label="posterior  P(A | B)\nupdated belief", fillcolor="#FFE9D2", color="#D9822B"];
+ex [label="example: 1% prevalence, 99% sensitivity, 5% false alarms\nPositive test -> only about 17% chance of being sick\n(a tiny prior drags the posterior down)", fillcolor="#EBDFFB", color="#7A4FC2"];
+pr -> nu; li -> nu; nu -> po; ev -> po [label=" divide by"]; po -> ex [style=dashed];
+}

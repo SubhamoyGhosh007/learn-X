@@ -1,0 +1,12 @@
+digraph G { rankdir=TB; bgcolor="white"; nodesep=0.35; ranksep=0.42; pad=0.3; labelloc=t; fontname="Helvetica-Bold"; fontsize=16; label="k-means: assign, update, repeat";
+node [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=12, margin="0.16,0.09", penwidth=1.4];
+edge [fontname="Helvetica", fontsize=10.5, color="#555555", arrowsize=0.8];
+k [label="choose k", fillcolor="#FFF3C4", color="#C9A100"];
+in [label="initialize k centroids\n(k-means++ spreads them out)", fillcolor="#DFF3E4", color="#2E8B57"];
+as [label="assign every point to its nearest centroid", fillcolor="#DCE9FF", color="#3B6EDC"];
+up [label="move each centroid to the mean\nof its assigned points", fillcolor="#DCE9FF", color="#3B6EDC"];
+cv [label="assignments unchanged?", fillcolor="#FFF3C4", color="#C9A100", shape=diamond, margin="0.04,0.04"];
+dn [label="done: clusters + centroids\n(local minimum of inertia)", fillcolor="#FFE9D2", color="#D9822B"];
+ch [label="choose k: elbow plot or silhouette score\nrun several restarts", fillcolor="#EBDFFB", color="#7A4FC2"];
+k -> in -> as -> up -> cv; cv -> as [label=" no"]; cv -> dn [label=" yes"]; dn -> ch [style=dashed];
+}

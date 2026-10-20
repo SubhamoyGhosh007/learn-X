@@ -1,0 +1,28 @@
+digraph workflow {
+  rankdir=TB; bgcolor="white"; nodesep=0.35; ranksep=0.38; pad=0.3;
+  node [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=12, margin="0.18,0.10", penwidth=1.4];
+  edge [fontname="Helvetica", fontsize=10, color="#555555", arrowsize=0.8];
+  labelloc=t; fontname="Helvetica-Bold"; fontsize=16; label="The end-to-end machine learning workflow";
+
+  subgraph cluster_a { label="Understand"; style="rounded,filled"; fillcolor="#F3F8FF"; color="#3B6EDC"; fontname="Helvetica-Bold"; fontsize=12;
+    problem [label="1. Define the problem\nand pick the metric", fillcolor="#DCE9FF", color="#3B6EDC"];
+    data    [label="2. Collect and inspect data (EDA)\ntypes, missing values, outliers, balance", fillcolor="#DCE9FF", color="#3B6EDC"];
+  }
+  subgraph cluster_b { label="Build and validate"; style="rounded,filled"; fillcolor="#F4FBF6"; color="#2E8B57"; fontname="Helvetica-Bold"; fontsize=12;
+    split [label="3. Split off the test set\n(seal it until the end)", fillcolor="#DFF3E4", color="#2E8B57"];
+    base  [label="4. Baseline model\n(dummy, then simple linear)", fillcolor="#DFF3E4", color="#2E8B57"];
+    prep  [label="5. Features + preprocessing pipeline\n(fit inside cross-validation)", fillcolor="#DFF3E4", color="#2E8B57"];
+    cv    [label="6. Compare model families\nwith cross-validation", fillcolor="#DFF3E4", color="#2E8B57"];
+    tune  [label="7. Tune the best candidates\n(random search / Optuna, early stopping)", fillcolor="#DFF3E4", color="#2E8B57"];
+  }
+  subgraph cluster_c { label="Ship"; style="rounded,filled"; fillcolor="#FFF8F0"; color="#D9822B"; fontname="Helvetica-Bold"; fontsize=12;
+    test   [label="8. Evaluate ONCE on the test set", fillcolor="#FFE9D2", color="#D9822B"];
+    interp [label="9. Interpret and sanity-check\n(permutation importance, SHAP)", fillcolor="#FFE9D2", color="#D9822B"];
+    deploy [label="10. Save pipeline (joblib) and deploy", fillcolor="#FFE9D2", color="#D9822B"];
+    monitor[label="11. Monitor drift and retrain", fillcolor="#FFE9D2", color="#D9822B"];
+  }
+  problem -> data -> split -> base -> prep -> cv -> tune -> test -> interp -> deploy -> monitor;
+  cv -> prep   [label="  weak? improve\n  features", style=dashed, constraint=false, color="#B03A2E", fontcolor="#B03A2E"];
+  test -> prep [label="  never tune on test!\n  (go back to CV)", style=dashed, constraint=false, color="#B03A2E", fontcolor="#B03A2E"];
+  monitor -> data [label="  data drift", style=dashed, constraint=false, color="#7A4FC2", fontcolor="#7A4FC2"];
+}

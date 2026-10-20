@@ -1,0 +1,12 @@
+digraph G { rankdir=TB; bgcolor="white"; nodesep=0.35; ranksep=0.42; pad=0.3; labelloc=t; fontname="Helvetica-Bold"; fontsize=16; label="k-fold cross-validation procedure";
+node [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=12, margin="0.16,0.09", penwidth=1.4];
+edge [fontname="Helvetica", fontsize=10.5, color="#555555", arrowsize=0.8];
+sp [label="split data into k folds", fillcolor="#FFF3C4", color="#C9A100"];
+lp [label="for each fold i = 1..k", fillcolor="#DFF3E4", color="#2E8B57"];
+tr [label="train on the other k-1 folds", fillcolor="#DCE9FF", color="#3B6EDC"];
+va [label="validate on fold i -> score i", fillcolor="#DCE9FF", color="#3B6EDC"];
+av [label="average the k scores\n(and look at their spread)", fillcolor="#FFE9D2", color="#D9822B"];
+ch [label="compare models / hyperparameters\nby that average", fillcolor="#EBDFFB", color="#7A4FC2"];
+ts [label="touch the TEST set once, at the end", fillcolor="#FADBD8", color="#B03A2E"];
+sp -> lp -> tr -> va; va -> lp [style=dashed, label=" next fold"]; va -> av -> ch -> ts;
+}

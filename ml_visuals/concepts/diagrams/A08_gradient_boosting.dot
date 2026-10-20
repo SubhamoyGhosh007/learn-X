@@ -1,0 +1,12 @@
+digraph G { rankdir=TB; bgcolor="white"; nodesep=0.35; ranksep=0.42; pad=0.3; labelloc=t; fontname="Helvetica-Bold"; fontsize=16; label="Gradient boosting: each tree fixes the leftover errors";
+node [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=12, margin="0.16,0.09", penwidth=1.4];
+edge [fontname="Helvetica", fontsize=10.5, color="#555555", arrowsize=0.8];
+f0 [label="F0 = a constant\n(the mean of y)", fillcolor="#EEEEEE", color="#444444"];
+rs [label="residuals = negative gradient of the loss\n(y - F for squared error)", fillcolor="#DFF3E4", color="#2E8B57"];
+tr [label="fit a SHALLOW tree to the residuals", fillcolor="#DCE9FF", color="#3B6EDC"];
+up [label="F = F + eta * tree\n(eta = learning rate)", fillcolor="#FFE9D2", color="#D9822B"];
+st [label="more trees? early stopping on a\nvalidation set decides", fillcolor="#FFF3C4", color="#C9A100", shape=diamond, margin="0.04,0.04"];
+out [label="final model = sum of all trees", fillcolor="#DFF3E4", color="#2E8B57"];
+lib [label="XGBoost, LightGBM, CatBoost,\nHistGradientBoosting", fillcolor="#EBDFFB", color="#7A4FC2"];
+f0 -> rs -> tr -> up -> st; st -> rs [label=" yes"]; st -> out [label=" no"]; out -> lib [style=dashed];
+}

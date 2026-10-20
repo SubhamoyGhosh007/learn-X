@@ -1,0 +1,12 @@
+digraph G { rankdir=TB; bgcolor="white"; nodesep=0.35; ranksep=0.42; pad=0.3; labelloc=t; fontname="Helvetica-Bold"; fontsize=16; label="Regularization: pay a price for large weights";
+node [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=12, margin="0.16,0.09", penwidth=1.4];
+edge [fontname="Helvetica", fontsize=10.5, color="#555555", arrowsize=0.8];
+ld [label="data loss  (e.g. MSE)", fillcolor="#DCE9FF", color="#3B6EDC"];
+pn [label="penalty on weights, scaled by lambda", fillcolor="#FFF3C4", color="#C9A100"];
+tot [label="total loss = data loss + lambda * penalty", fillcolor="#FFE9D2", color="#D9822B"];
+l2 [label="Ridge (L2): sum of w^2\nshrinks all weights smoothly", fillcolor="#DFF3E4", color="#2E8B57"];
+l1 [label="Lasso (L1): sum of |w|\nsets some weights EXACTLY to zero", fillcolor="#DFF3E4", color="#2E8B57"];
+en [label="Elastic Net: mix of both", fillcolor="white", color="#666666"];
+cv [label="choose lambda by cross-validation\n(standardize features first)", fillcolor="#EBDFFB", color="#7A4FC2"];
+ld -> tot; pn -> tot; pn -> l2; pn -> l1; l2 -> en [style=dashed, arrowhead=none]; l1 -> en [style=dashed, arrowhead=none]; tot -> cv [style=dashed];
+}

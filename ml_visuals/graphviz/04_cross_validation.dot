@@ -1,0 +1,16 @@
+digraph cv {
+  rankdir=TB; bgcolor="white"; pad=0.3;
+  labelloc=t; fontname="Helvetica-Bold"; fontsize=16; label="Data splitting and 5-fold cross-validation";
+  node [shape=plain, fontname="Helvetica", fontsize=12];
+  t [label=<
+  <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="0" CELLPADDING="9">
+    <TR><TD BGCOLOR="#EEEEEE" COLSPAN="6"><B>All labeled data</B></TD></TR>
+    <TR><TD BGCOLOR="#DFF3E4" COLSPAN="5"><B>Training portion</B> (used for model building, tuning and CV)</TD><TD BGCOLOR="#FFD9D2"><B>TEST</B><BR/>sealed</TD></TR>
+    <TR><TD BGCOLOR="#FFF3C4"><B>Fold 1</B><BR/>validate</TD><TD BGCOLOR="#DCE9FF">train</TD><TD BGCOLOR="#DCE9FF">train</TD><TD BGCOLOR="#DCE9FF">train</TD><TD BGCOLOR="#DCE9FF">train</TD><TD BORDER="0"> &#8594; score 1</TD></TR>
+    <TR><TD BGCOLOR="#DCE9FF">train</TD><TD BGCOLOR="#FFF3C4"><B>Fold 2</B><BR/>validate</TD><TD BGCOLOR="#DCE9FF">train</TD><TD BGCOLOR="#DCE9FF">train</TD><TD BGCOLOR="#DCE9FF">train</TD><TD BORDER="0"> &#8594; score 2</TD></TR>
+    <TR><TD BGCOLOR="#DCE9FF">train</TD><TD BGCOLOR="#DCE9FF">train</TD><TD BGCOLOR="#FFF3C4"><B>Fold 3</B><BR/>validate</TD><TD BGCOLOR="#DCE9FF">train</TD><TD BGCOLOR="#DCE9FF">train</TD><TD BORDER="0"> &#8594; score 3</TD></TR>
+    <TR><TD BGCOLOR="#DCE9FF">train</TD><TD BGCOLOR="#DCE9FF">train</TD><TD BGCOLOR="#DCE9FF">train</TD><TD BGCOLOR="#FFF3C4"><B>Fold 4</B><BR/>validate</TD><TD BGCOLOR="#DCE9FF">train</TD><TD BORDER="0"> &#8594; score 4</TD></TR>
+    <TR><TD BGCOLOR="#DCE9FF">train</TD><TD BGCOLOR="#DCE9FF">train</TD><TD BGCOLOR="#DCE9FF">train</TD><TD BGCOLOR="#DCE9FF">train</TD><TD BGCOLOR="#FFF3C4"><B>Fold 5</B><BR/>validate</TD><TD BORDER="0"> &#8594; score 5</TD></TR>
+    <TR><TD BORDER="0" COLSPAN="6"><B>CV estimate = mean of the 5 scores</B> (and look at their spread). Touch TEST once, at the very end.</TD></TR>
+  </TABLE>>];
+}

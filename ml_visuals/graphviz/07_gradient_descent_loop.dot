@@ -1,0 +1,16 @@
+digraph gd {
+  rankdir=TB; bgcolor="white"; nodesep=0.3; ranksep=0.4; pad=0.3;
+  node [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=12, margin="0.16,0.09", fillcolor="#DCE9FF", color="#3B6EDC", penwidth=1.4];
+  edge [fontname="Helvetica", fontsize=10.5, color="#555555", arrowsize=0.8];
+  labelloc=t; fontname="Helvetica-Bold"; fontsize=16; label="Gradient descent: the learning loop";
+  init [label="Initialize weights w\n(zeros or small random)", fillcolor="#EEEEEE", color="#444444"];
+  pred [label="Predict:  y_hat = X w"];
+  loss [label="Measure the loss L(w)\n(MSE or log-loss)"];
+  grad [label="Compute the gradient\ngrad L = (2/m) X^T (X w - y)"];
+  upd  [label="Step downhill:\nw = w - alpha * grad L", fillcolor="#FFE9D2", color="#D9822B"];
+  chk  [label="Loss still\ndecreasing?", shape=diamond, fillcolor="#FFF3C4", color="#C9A100", margin="0.04,0.04"];
+  done [label="Done: use w for predictions", fillcolor="#DFF3E4", color="#2E8B57"];
+  init -> pred -> loss -> grad -> upd -> chk; chk -> pred [label="yes: repeat"]; chk -> done [label="no"];
+  tip [shape=note, style=filled, fillcolor="#F3F3F3", color="#999999", fontsize=10.5, label="alpha too small: slow\nalpha too large: overshoots / diverges\nScale features first"];
+  upd -> tip [style=dashed, arrowhead=none, color="#999999"];
+}

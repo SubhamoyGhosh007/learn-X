@@ -1,0 +1,10 @@
+digraph G { rankdir=LR; bgcolor="white"; nodesep=0.35; ranksep=0.42; pad=0.3; labelloc=t; fontname="Helvetica-Bold"; fontsize=16; label="Normal distribution and the central limit theorem";
+node [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=12, margin="0.16,0.09", penwidth=1.4];
+edge [fontname="Helvetica", fontsize=10.5, color="#555555", arrowsize=0.8];
+e [label="many small independent effects", fillcolor="#DCE9FF", color="#3B6EDC"];
+avg [label="add or average them", fillcolor="#DFF3E4", color="#2E8B57"];
+bell [label="bell curve (normal)\nmean mu, spread sigma", fillcolor="#FFE9D2", color="#D9822B"];
+r [label="68% within 1 sigma\n95% within 2 sigma\n99.7% within 3 sigma", fillcolor="white", color="#666666"];
+ml [label="Why it matters: measurement noise is often normal,\nso least squares (squared error) is the natural loss", fillcolor="#EBDFFB", color="#7A4FC2"];
+e -> avg [label=" central limit theorem"]; avg -> bell -> r; bell -> ml [style=dashed];
+}

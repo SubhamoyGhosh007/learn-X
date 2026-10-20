@@ -1,0 +1,14 @@
+digraph tree {
+  rankdir=TB; bgcolor="white"; nodesep=0.35; ranksep=0.5; pad=0.3;
+  node [shape=box, style="rounded,filled", fontname="Helvetica", fontsize=12, margin="0.15,0.09", penwidth=1.4];
+  edge [fontname="Helvetica", fontsize=11, color="#555555", arrowsize=0.8];
+  labelloc=t; fontname="Helvetica-Bold"; fontsize=16; label="A small decision tree: will a customer buy?";
+  r  [label="income > 50k?\n10 samples: 5 yes / 5 no\nentropy = 1.00", fillcolor="#FFF3C4", color="#C9A100"];
+  a  [label="age < 30?\n6 samples: 4 yes / 2 no\nentropy = 0.92", fillcolor="#FFF3C4", color="#C9A100"];
+  b  [label="LEAF: predict NO\n4 samples: 1 yes / 3 no\nentropy = 0.81", fillcolor="#FADBD8", color="#B03A2E"];
+  c  [label="LEAF: predict YES\n3 samples: 3 yes / 0 no\nentropy = 0.00", fillcolor="#D5F5E3", color="#2E8B57"];
+  d  [label="LEAF: predict YES\n3 samples: 1 yes / 2 no\nbut stopped here (min leaf = 3)", fillcolor="#D5F5E3", color="#2E8B57"];
+  r -> a [label="  yes"]; r -> b [label="  no"]; a -> c [label="  yes"]; a -> d [label="  no"];
+  note [shape=note, style=filled, fillcolor="#F3F3F3", color="#999999", fontsize=10.5, label="Each split is chosen to maximize information gain:\nGain = H(parent) - weighted average H(children)"];
+  d -> note [style=invis];
+}
